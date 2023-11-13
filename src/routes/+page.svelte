@@ -1,59 +1,48 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts">
+	import Counter from "./Counter.svelte";
+
+	function modulo(n: number, m: number) {
+		// handle negative numbers
+		return ((n % m) + m) % m;
+	}
+
+	let count = 0;
+
+	const gradients = [
+		["#e73c7e", "#23a6d5"],
+		["red", "yellow"],
+		["#fcb045", "#833ab4"],
+		["#020024", "#00d4ff"],
+	];
+
+	function changeBackground(n: number): void {
+		count = n;
+	}
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Count THIS!</title>
+	<meta name="description" content="Count THIS!" />
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
+<section
+	style="--bg: {`linear-gradient(${
+		(360 * modulo(count, gradients.length ** 2)) / gradients.length ** 2
+	}deg, ${gradients[modulo(count, gradients.length)][0]}, ${
+		gradients[modulo(count, gradients.length)][1]
+	})`}"
+>
+	<Counter {changeBackground} />
 </section>
 
 <style>
 	section {
+		background-image: var(--bg);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
+		flex: 1;
 		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
 	}
 </style>
