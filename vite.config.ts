@@ -7,7 +7,7 @@ export default defineConfig({
 	base: '/countthis/',
 	plugins: [
 		sveltekit(),
-		SvelteKitPWA(),
+		// SvelteKitPWA(),
 	],
 	build: {
 		outDir: "/dist"
