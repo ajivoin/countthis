@@ -9,4 +9,7 @@ export default defineConfig({
 		sveltekit(),
 		SvelteKitPWA(),
 	],
+	build: {
+		outDir: "/dist"
+	}
 });
