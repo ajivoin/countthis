@@ -23,6 +23,8 @@ const config = {
 		paths: {
 			base: process.argv.includes('dev') ? '' : '/countthis',
 		},
+		outDir: 'dist',
+
 	},
 };
 
