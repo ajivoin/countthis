@@ -6,6 +6,8 @@ import { defineConfig } from 'vite';
 export default defineConfig({
 	plugins: [
 		sveltekit(),
-		SvelteKitPWA(),
 	],
+	build: {
+		assetsInlineLimit: 0,
+	}
 });
