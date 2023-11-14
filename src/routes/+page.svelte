@@ -13,6 +13,7 @@
 		["red", "yellow"],
 		["#fcb045", "#833ab4"],
 		["#020024", "#00d4ff"],
+                ["rgb(182, 244, 146)", "rgb(51, 139, 147)"],
 	];
 
 	function changeBackground(n: number): void {
