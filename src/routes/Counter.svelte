@@ -63,7 +63,9 @@
 		<button
 			on:click={reset}
 			on:focus={() => (shouldIncrement = false)}
+			on:mouseenter={() => (shouldIncrement = false)}
 			on:blur={() => (shouldIncrement = true)}
+			on:mouseleave={() => (shouldIncrement = false)}
 			aria-label="Reset the counter to zero"
 		>
 			<svg viewBox="0 0 21 21">
