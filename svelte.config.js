@@ -21,7 +21,7 @@ const config = {
 		// }
 		// ),
 		paths: {
-			base: process.argv.includes('dev') ? '' : '/countthis',
+			base: '',
 		},
 		outDir: 'dist',
 
