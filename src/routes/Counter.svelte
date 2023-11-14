@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let changeBackground: (x: number) => void;
 	import { spring } from "svelte/motion";
+	import IgnoreIncrementButton from "./IgnoreIncrementButton.svelte";
 
 	let count = 0;
 
@@ -37,18 +38,16 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="counter-container" on:click={increment} role="button">
 	<div class="counter">
-		<button
-			on:click={decrement}
-			on:focus={() => (shouldIncrement = false)}
-			on:mouseenter={() => (shouldIncrement = false)}
-			on:blur={() => (shouldIncrement = true)}
-			on:mouseleave={() => (shouldIncrement = true)}
-			aria-label="Decrease the counter by one"
+		<IgnoreIncrementButton
+			ariaLabel="Decrease the value of the counter by one"
+			onClick={decrement}
+			onBlur={() => (shouldIncrement = true)}
+			onFocus={() => (shouldIncrement = false)}
 		>
 			<svg aria-hidden="true" viewBox="0 0 1 1">
 				<path d="M0,0.5 L1,0.5" />
 			</svg>
-		</button>
+		</IgnoreIncrementButton>
 
 		<div class="counter-viewport">
 			<div
@@ -62,13 +61,11 @@
 			</div>
 		</div>
 
-		<button
-			on:click={reset}
-			on:focus={() => (shouldIncrement = false)}
-			on:mouseenter={() => (shouldIncrement = false)}
-			on:blur={() => (shouldIncrement = true)}
-			on:mouseleave={() => (shouldIncrement = true)}
-			aria-label="Reset the counter to zero"
+		<IgnoreIncrementButton
+			onClick={reset}
+			onFocus={() => (shouldIncrement = false)}
+			onBlur={() => (shouldIncrement = true)}
+			ariaLabel="Reset the counter to zero"
 		>
 			<svg viewBox="0 0 21 21">
 				<g
@@ -85,7 +82,7 @@
 					<path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)" />
 				</g>
 			</svg>
-		</button>
+		</IgnoreIncrementButton>
 	</div>
 </div>
 
@@ -105,22 +102,6 @@
 		border-top: 1px solid rgba(0, 0, 0, 0.1);
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		margin: 1rem 0;
-	}
-
-	.counter button {
-		width: 2em;
-		padding: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: 0;
-		background-color: transparent;
-		touch-action: manipulation;
-		font-size: 2rem;
-	}
-
-	.counter button:hover {
-		background-color: var(--color-bg-1);
 	}
 
 	svg {

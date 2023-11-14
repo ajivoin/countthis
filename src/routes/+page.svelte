@@ -16,8 +16,15 @@
 		["rgb(182, 244, 146)", "rgb(51, 139, 147)"],
 	];
 
+	$: angle = (360 * modulo(count, gradients.length ** 2)) / gradients.length;
+	$: index = modulo(count, gradients.length);
+
 	function changeBackground(n: number): void {
 		count = n;
+	}
+
+	function formatGradient(row: string[]): string {
+		return row.join(", ");
 	}
 </script>
 
@@ -27,11 +34,7 @@
 </svelte:head>
 
 <section
-	style="--bg: {`linear-gradient(${
-		(360 * modulo(count, gradients.length ** 2)) / gradients.length ** 2
-	}deg, ${gradients[modulo(count, gradients.length)][0]}, ${
-		gradients[modulo(count, gradients.length)][1]
-	})`}"
+	style="--bg: linear-gradient({angle}deg, {formatGradient(gradients[index])}"
 >
 	<Counter {changeBackground} />
 </section>
