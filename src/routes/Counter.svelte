@@ -40,7 +40,9 @@
 		<button
 			on:click={decrement}
 			on:focus={() => (shouldIncrement = false)}
+			on:mouseenter={() => (shouldIncrement = false)}
 			on:blur={() => (shouldIncrement = true)}
+			on:mouseleave={() => (shouldIncrement = true)}
 			aria-label="Decrease the counter by one"
 		>
 			<svg aria-hidden="true" viewBox="0 0 1 1">
