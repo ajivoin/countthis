@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { fade, crossfade } from "svelte/transition";
+
     export let onClick: () => any;
     export let onFocus: () => any;
     export let onBlur: () => any;
@@ -6,6 +8,7 @@
 </script>
 
 <button
+    in:fade={{ duration: 500 }}
     on:click={onClick}
     on:focus={onFocus}
     on:mouseenter={onFocus}

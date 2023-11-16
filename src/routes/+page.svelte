@@ -45,6 +45,8 @@
 
 <style>
 	section {
+		-webkit-transition: background-image 0.2s ease-in-out;
+		transition: background-image 0.2s ease-in-out;
 		background-image: var(--bg);
 		display: flex;
 		flex-direction: column;
@@ -52,5 +54,18 @@
 		align-items: center;
 		flex: 1;
 		width: 100%;
+	}
+
+	@media (prefers-reduced-motion) {
+		section {
+			background-image: linear-gradient(0deg, #e73c7e, #23a6d5);
+		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		section {
+			background-image: none;
+			background-color: #111;
+		}
 	}
 </style>
